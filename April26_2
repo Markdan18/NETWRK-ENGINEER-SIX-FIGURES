@@ -1,0 +1,94 @@
+RealWorldDeployment = 3/4 Years Experience:
+@d1:
+conf t
+vlan 11
+name 1500wfh
+exit
+
+interface vlan 11
+no shutdown
+ip add 172.16.8.1 255.255.248.0
+exit
+ip dhcp excluded-add 172.16.8.1 172.16.8.100
+ip dhcp pool 1500WFH
+NETWORK 172.16.8.0 255.255.48.0
+DEFAULT-ROUTER 172.16.8.1
+END
+
+@A1:
+conf t
+int e0/0
+no shut
+switchport access vlan 11
+do show vlan brief
+
+@p1
+config t
+int e0/0
+no shutdown
+ip address DHCP
+DO BP
+
+######################### d1, a1, p2 #####################
+@d1:
+conf t
+vlan 6
+name 50wfh
+exit
+
+interface vlan 6
+no shutdown
+ip add 172.16.0.65 255.255.255.192
+exit
+ip dhcp excluded-add 172.16.0.65 172.16.0.69
+ip dhcp pool 50wfh
+NETWORK 172.16.0.64 255.255.255.192
+DEFAULT-ROUTER 172.16.0.65
+END
+
+@A1:
+conf t
+int e0/0
+no shut
+switchport access vlan 11
+do show vlan brief
+
+@p1
+config t
+int e0/0
+no shutdown
+ip address DHCP
+DO BP
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+TASK 4: REALWORLD
+RealWorldDeployment = 3/4 Years Experience:
+@d1:
+conf t
+vlan 14
+name 8500wfh
+exit
+
+interface vlan 14
+no shutdown
+ip add 10.0.64.1 255.255.192.0
+exit
+ip dhcp excluded-add 10.0.64.1 10.0.64.100
+ip dhcp pool 8500wfh
+NETWORK 10.0.64.0 255.255.192.0
+DEFAULT-ROUTER 10.0.64.1
+END
+
+@D2:
+conf t
+int e1/0
+no shut
+switchport access vlan 14
+do show vlan brief
+
+@S2
+config t
+int e1/0
+no shutdown
+ip address DHCP
+DO BP
