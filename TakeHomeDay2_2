@@ -38,9 +38,41 @@ do bp
 
 
 *******************************************************
+BD0 250 CLIENTS, VLAN 2, 172.16.0.0/8, D1 A1 P1
+C: 6 BITS
+S: /32 - /6 = /26
+I: 3RD, 64i                      *SHOULD BE 4TH , 64i*
 
 
+@D1
+conf te
+vlan 2
+name bdo250
+exit
 
+int vlan 2
+no shutdown
+ip add 172.16.64.1 255.255.192.0
+exit
+ip dhcp excluded-add 172.16.64.1 172.16.64.5
+ip dhcp pool bdo250
+network 172.16.64.0 255.255.192.0
+default-router 172.16.64.1
+end
+
+@A2
+conf te
+int e0/0
+no shutdown
+switchport access vlan 2
+do show vlan brief
+
+@P2
+conf te
+int e0/0
+no shutdown
+ip address dhcp
+do bp
 
 
 
