@@ -76,3 +76,45 @@ do bp
 
 
 
+
+
+*******************************************************
+PSBANK 6 CLIENTS, VLAN 6, 172.16.0.0/16, D2 A1 S2
+C: 4 BITS
+S: /32 - /4 = /28
+I: 4TH, 16i                      
+
+
+@A1
+conf te
+vlan 6
+name PSBANK6
+exit
+
+int vlan 6    
+no shutdown
+ip add 172.16.0.17 255.255.255.248
+exit
+ip dhcp excluded-add 172.16.0.17 172.16.0.19
+ip dhcp pool PSBANK6
+network 172.16.0.16 255.255.255.248
+default-router 172.16.0.17
+end
+
+@D2
+conf te
+int e1/0
+no shutdown
+switchport access vlan 6
+do show vlan brief
+
+@S2
+conf te
+int e1/0
+no shutdown
+ip address dhcp
+do bp
+
+**error**
+
+
