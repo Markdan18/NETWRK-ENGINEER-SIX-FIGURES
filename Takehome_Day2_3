@@ -1,0 +1,117 @@
+***************************************
+BD0 250 CLIENTS, VLAN 2, 172.16.0.0/8, D1 A1 P1
+C: 6 BITS
+S: /32 - /6 = /26
+I: 4th, 64i  
+
+@D1
+conf t
+vlan 2
+name bd025
+exit
+
+int vlan 2
+no shutdown
+ip address 172.16.0.65 255.255.225.192
+exit
+ip dhcp exclud 172.16.0.65 172.16.0.70
+ip dhcp pool bd025
+network 172.16.0.64 255.255.225.192
+default-router 172.16.0.65
+end
+
+
+@A1
+conf t
+int e0/0
+no shutdown
+switchport access vlan 2
+do show vlan brief
+
+@P1
+conf te
+int e0/0
+no shutdown
+ip address dhcp
+do bp
+
+
+
+***************************************
+BPI 5000 CLIENTS, VLAN 8, 10.0.0.0/8, D1 A2 P2
+C: 13 BITS
+S: /32 - /13 = /19
+I: 3rd, 32i
+
+@D1
+conf t
+vlan 8
+name bpi5k
+exit
+
+int vlan 8
+no shutdown
+ip address 10.0.32.1 255.255.224.0
+exit
+ip dhcp exclud 10.0.32.1 10.0.32.100
+ip dhcp pool bpi5k
+network 10.0.32.0 255.255.224.0
+default-router 10.0.32.1
+end
+
+
+@A2
+conf t
+int e1/0
+no shutdown
+switchport access vlan 8
+do show vlan brief
+
+@P2
+conf te
+int e1/0
+no shutdown
+ip address dhcp
+do bp
+
+
+
+PSBANK 6 CLIENTS, VLAN 6, 172.16.0.0/16, D2 A1 S2
+C: 4 BITS
+S: /32 - /4 = /28
+I: 4TH, 16i                      
+
+
+@A1
+conf te
+vlan 6
+name PSBANK6
+exit
+
+int vlan 6    
+no shutdown
+ip add 172.16.0.17 255.255.255.248
+exit
+ip dhcp excluded-add 172.16.0.17 172.16.0.19
+ip dhcp pool PSBANK6
+network 172.16.0.16 255.255.255.248
+default-router 172.16.0.17
+end
+
+@D2
+conf te
+int e1/0
+no shutdown
+switchport access vlan 6
+do show vlan brief
+
+@S2
+conf te
+int e1/0
+no shutdown
+ip address dhcp
+do bp
+
+
+
+
