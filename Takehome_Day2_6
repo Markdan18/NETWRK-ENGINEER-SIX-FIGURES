@@ -1,4 +1,40 @@
-*****************************************************8
+*****************************************************
+172.16.0.0 /16      4500 Clients     D1,A1,P1
+C = 14 bits 
+S = /32 - /14 = /18
+I = 3rd, 64i
+
+
+@D1:
+configure terminal
+vlan 7
+name 4500BDO
+exit
+
+interface vlan 7
+no shutdown
+ip add 172.16.64.1 255.255.192.0
+exit
+ip dhcp excluded-add 172.16.64.1 172.16.64.100
+ip dhcp pool 4500bdo
+NETWORK 172.16.64.0 255.255.192.0
+DEFAULT-ROUTER 172.16.64.1 
+END
+
+@A1:
+configure terminal
+int e0/0
+no shut
+switchport access vlan 7
+do show vlan brief
+
+@P1
+config t
+int e0/0
+no shutdown
+ip address DHCP
+DO BP
+
 
 
 
