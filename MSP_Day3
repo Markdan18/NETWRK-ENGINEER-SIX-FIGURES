@@ -1,0 +1,81 @@
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+192.168.102.133		msp.nocrivan.com
+192.168.102.133		soc.rivan.it.com
+192.168.102.133		ticket.utosme.com
+
+192.168.103.10 www.bet10.com
+208.8.8.11 www.bet11.com
+208.8.8.100 www.bet100.com
+208.8.8.55 nakawpamore.com.ph
+
+192.168.103.21 www.bet21.com
+192.168.103.22 www.bet22.com
+#208.8.8.121 www.surebet21.com
+#208.8.8.122 www.surebet22.com
+
+208.8.8.144 soc.pfda.gov.ph
+208.8.8.121 portal1.pfda.gov.ph
+208.8.8.122 portal2.pfda.gov.ph
+208.8.8.199 socir.rivanit.com
+
+161.49.21.243 www.pornhub.com
+161.49.21.243 www.faketaxi.com
+
+208.8.8.47 sumbongvp.gov.ph
+
+208.8.8.184 soc.rivan.com
+208.8.8.42 dash.rivan.com
+192.168.101.138 www.hackme.com
+
+192.168.103.10 bet10.com
+192.168.103.11 bet11.com
+
+208.8.8.133 socir.rivan.com
+
+208.8.8.50 secbet10.com
+208.8.8.51 secbet10.com
+208.8.8.133 socir.rivanit.com
+
+
+
+208.8.8.100      pam.rivan.com
+192.168.102.100  pam.rivan.com
+200.0.0.11       pam.rivan11.com
+200.0.0.12       pam.rivan12.com
+200.0.0.21       pam.rivan21.com
+200.0.0.22       pam.rivan22.com
+200.0.0.31       pam.rivan31.com
+200.0.0.32       pam.rivan32.com
+200.0.0.41       pam.rivan41.com
+200.0.0.42       pam.rivan42.com
+200.0.0.51       pam.rivan51.com
+200.0.0.52       pam.rivan52.com
+200.0.0.61       pam.rivan61.com
+200.0.0.62       pam.rivan62.com
+200.0.0.71       pam.rivan71.com
+200.0.0.72       pam.rivan72.com
+200.0.0.81       pam.rivan81.com
+200.0.0.82       pam.rivan82.com
+200.0.0.91       pam.rivan91.com
+200.0.0.92       pam.rivan92.com
+200.0.0.13       pam.rivan13.com
