@@ -1,0 +1,52 @@
+*********************************************
+172.16.0.0 /16
+BDO VPN
+2500 clients
+VLAN 2500BDO
+D1, A1, P1
+
+
+C: 12 bits
+S: /32 - /12 = /30
+I: 3rd , 16i
+
+@D1
+configure terminal
+vlan 7
+name 2500BDO
+exit
+
+int vlan 7
+no shutdown
+ip address 172.16.16.1 255.255.240.0
+exit
+ip dhcp excluded-address 172.16.16.1 172.16.16.100
+ip dhcp pool 2500bdo
+network 172.16.16.0 255.255.240.0
+default-router 172.16.16.1
+end
+
+
+@A1
+conf terminal
+int e0/0
+no shutdown
+switchport access vlan 7
+do show vlan brief
+
+
+@P1
+conf terminal
+int e0/0
+no shutdown
+ip address dhcp
+do bp
+
+
+
+
+
+
+
+
+
