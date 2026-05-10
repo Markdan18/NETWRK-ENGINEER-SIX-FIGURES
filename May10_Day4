@@ -1,0 +1,47 @@
+Kali Linux
+
+ip addr
+
+open ssh for remote admin:
+sudo su
+systemctl enable ssh
+
+
+
+
+
+
+
+nmap -sP 10.k.1.4
+
+netstat -ano
+
+HOW AN ATTACK HAPPENS: 3 WAY HANDSHAKE
+
+HACKER			VICTIM
+-----------SYN------------->
+<----------ACK--------------
+---------SYN/ACK----------->
+------ESTABLISHED STATE-----
+
+tcp.flags.syn==1
+
+
+HACKERS:  PORT 139 & 445:
+
+inital access:
+net use \\10.k.1.10\ipc$
+
+privilegeuse:
+
+net use x: /delete
+net use x: \\10.k.1.10\c$
+
+COPY PASTE 71-92 LINES TO fw-secedge
+
+
+protocol hacker 
+
+
+
+
