@@ -300,6 +300,45 @@ Config t
 
 
 
+import cli
+
+cmd2 = '''hostname MATCHALATTE
+int loop 7
+ip add 7.7.7.7 255.255.255.255
+int loop 8
+ip add 8.8.8.8 255.255.255.255
+int loop 9
+ip add 9.9.9.9 255.255.255.255
+end
+'''
+cli.configurep(cmd2)
+
+
+
+
+
+
+Activity TASKS:
+
+MONDAY
+Create FireWall
+Create MGFW6:
+bet10.com   dns,http,htpps
+bet11.com   telnet,ssh
+
+TUESDAY
+CiscoParen+ + PythonLinux + Docker Linux + nmap
+
+WEDNESDAY
+install postman + gawa 3 loopback
+
+THURSDAY
+repeat
+attend mass
+
+FRIDAY
+go to 
+
 
 
 
