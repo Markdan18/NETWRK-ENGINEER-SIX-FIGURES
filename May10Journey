@@ -40,7 +40,7 @@ net use x: \\10.k.1.10\c$
 COPY PASTE 71-92 LINES TO fw-secedge
 
 
-protocol hacker 
+protocol hacker victim port
 
 
 
@@ -123,6 +123,187 @@ Permit Any
 Int Gi 1
  ip access-group NOISKUL in
 end
+
+
+
+config te
+int gi 1
+no ip access-group NOISKUL in
+
+
+
+//////////////////////////////////////////
+Block Torrents
+
+
+config t
+NO ip access-list standard NOTORS
+ip access-list standard NOTORS
+DENY   162.159.0.0    0.0.255.255
+DENY   104.21.0.0   0.0.255.255
+DENY   172.67.0.0   0.0.255.255
+DENY   84.32.0.0   0.0.255.255
+DENY   76.223.0.0   0.0.255.255
+DENY   13.248.0.0   0.0.255.255
+DENY   104.21.0.0    0.0.255.255
+DENY   104.26.0.0   0.0.255.255
+DENY   95.211.0.0   0.0.255.255
+Permit Any
+Int Gi 1
+ ip access-group NOTORS in
+end
+
+////////////////////////////////////////////////////////
+FIREWALL Configuration
+config t
+int Gi 3
+ no shut
+ ip add 192.168.103.11 255.255.255.0
+ ip add 192.168.103.10 255.255.255.0 Secondary
+service finger
+service tcp-small-servers
+service udp-small-servers
+ip dns server
+ip http server
+ip http secure-server
+telephony-service
+max-ephone 2
+max-dn 4
+ip source-address 192.168.103.11 port 2000
+voice service voip
+ allow-connections sip to sip
+ sip
+   registrar server expires max 600 min 60
+ voice register global
+  mode cme
+  source-address 192.168.103.11 port 5060
+  max-dn 12
+  max-pool 12
+!Make Ping EASY
+ip host bet10.com 192.168.103.10
+ip host bet11.com 192.168.103.11
+
+
+
+
+
+
+
+############################################
+Firewall Policy
+
+
+//////////////////////////////
+ Permit tcp Any  host   bet10.com eq 80 log
+ protocol   hacker      victim 	     port
+
+//////////////////////////////
+
+
+
+276-302 paste:
+
+Config t
+NO IP access-list Extended NGFW1
+IP access-list Extended NGFW1
+ Permit tcp Any host bet10.com eq 80 log
+ Permit tcp Any host bet10.com eq 443 log
+ Permit icmp Any host bet10.com log
+ Permit tcp Any host bet11.com eq 53 log
+ Permit tcp Any host bet11.com eq 443 log
+ Permit tcp Any host bet11.com eq 22 log
+ Int Gi 3
+  ip access-group NGFW1 in
+
+
+
+REMOVE FIREWALL:
+CONfig t
+ Int Gi 3
+  NO ip access-group NGFW1 in
+end
+
+
+53 80 443 Allow:
+
+Config t
+NO IP access-list Extended NGFW2
+IP access-list Extended NGFW2
+ Permit tcp Any host bet10.com eq 53 log
+ Permit tcp Any host bet10.com eq 22 log
+ Permit icmp Any host bet10.com log
+ Permit tcp Any host bet11.com eq 80 log
+ Permit tcp Any host bet11.com eq 443 log
+ Int Gi 3
+  ip access-group NGFW2 in
+
+
+REMOVE FIREWALL:
+CONfig t
+ Int Gi 3
+  NO ip access-group NGFW2 in
+end
+
+
+
+
+
+
+
+
+///////////////////////
+Game Lab3; make NGFW3
+allow only ccp,sip,h323 on bet10.com
+allow only ssh, dns, http, https on bet11.com
+
+
+Config t
+NO IP access-list Extended NGFW3
+IP access-list Extended NGFW3
+ Permit tcp Any host bet10.com eq 2000 log
+ Permit tcp Any host bet10.com eq 2060 log
+ Permit tcp Any host bet10.com eq 1720 log
+ Permit icmp Any host bet10.com log
+ Permit tcp Any host bet11.com eq 80 log
+ Permit tcp Any host bet11.com eq 443 log
+ Permit tcp Any host bet11.com eq 53 log
+ Permit tcp Any host bet11.com eq 22 log
+ Int Gi 3
+  ip access-group NGFW3 in
+
+REMOVE FIREWALL:
+CONfig t
+ Int Gi 3
+NO ip access-group NGFW2 in
+end
+
+
+
+
+
+////////////////////////////
+Game Lab4; make IWASHULITSHIRT
+allow only https on bet10.com
+allow only https on bet11.com
+
+
+Config t
+NO IP access-list Extended IWASHULITSHIRT
+IP access-list Extended IWASHULITSHIRT
+ Permit tcp Any host bet10.com eq 443 log
+ Permit icmp Any host bet10.com log
+ Permit tcp Any host bet11.com eq 443 log
+Config t
+ Int Gi 3
+  ip access-group IWASHULITSHIRT in
+
+
+
+
+
+
+
+
 
 
 
