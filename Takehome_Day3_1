@@ -6,12 +6,15 @@ IPV6 Practice
 - Route Not Dikit
 - NEVER FORGET the two rules
 
+
+
 5 ways to Route:
 1. STATIC ROUTE
 2. EIGRP
 3. OSPF
 4. BGP
 5. DEFAULTROUTE
+
 
 
 MR BODDS = MPLS, RIP, BGP, OSPF, DEFAULY, STATIC ROUTE
@@ -22,6 +25,10 @@ OSPF = 110
 EIGRP = 90
 DEF = 1
 
+
+
+
+////////////////////////////////////////////////////////////////
 
 
 
