@@ -105,6 +105,42 @@ int e1/0
 
 next next
 
+A1: lipat vlan from v1 to v10
+ config t
+int e0/0
+ switchport mode access
+ switchport access vlan 10
+!A1: creating Floating Default route and Secondary Default Route:
+config t
+ip route 0.0.0.0 0.0.0.0 192.168.1.129 1
+ip route 0.0.0.0 0.0.0.0 192.168.1.130 2
+do sh ip route static
+
+A2:
+config t
+int e1/0
+ switchport mode access
+ switchport access vlan 10
+!A2: creating primary and backup default route:
+config t
+ip route 0.0.0.0 0.0.0.0 192.168.1.130 1
+ip route 0.0.0.0 0.0.0.0 192.168.1.129  2
+do sh ip route static
+
+
+p1:
+config t
+int e0/0
+ ip add 10.2.1.101 255.255.255.0
+ no shut
+P1: Creating  STATIC routes USING LONGEST PREFIX on p1 for vlan 200 and vlan 20:
+config t
+ip route  192.168.1.128 255.255.255.224 10.2.1.1 1
+ip route  192.168.1.130 255.255.255.255 10.2.1.2
+! /32 is better than /27: longest prefix Rule.
+do sh ip route static
+
+
 
 
 
