@@ -39,5 +39,72 @@ rip - 120, bgp -20/200, ospf - 110, eigrp -90, stat,def: 1
 ################################################################
 
 
+r1 to r4: ospf 1:
+config t
+ no router ospf 1
+ do sh ip protocols
+
+@@S1
+config t
+int e1/0
+ no shut
+ ip add 192.168.1.133 255.255.255.224
+ do bp
+!These are floating Default Static routes with redundancy
+ ip route 0.0.0.0 0.0.0.0 192.168.1.129 1
+ ip route 0.0.0.0 0.0.0.0 192.168.1.130 5
+ do sh ip route static
+@@S2
+config t
+int e1/0
+ no shut
+ ip add 10.2.2.133 255.255.255.0
+ do bp
+ ip route 0.0.0.0 0.0.0.0 10.2.2.2 1
+ ip route 0.0.0.0 0.0.0.0 10.2.2.1 10
+ do sh ip route static
+
+R4
+config t
+ no router eigrp 100
+ Task1: LoadBalacing DHCP Server:
+
+ D1:
+CONFIG T
+ip dhcp excluded-add 10.2.1.1 10.2.1.99
+ip dhcp excluded-add 10.2.1.200 10.2.1.254
+!
+ip dhcp pool vlan10
+  network 10.2.1.0 255.255.255.0
+  default-router 10.2.1.254
+!#ipasok d1 port e1/0 sa vlan 100
+config t
+int e1/0
+   switchport mode access
+   switchport access vlan 100
+   do show vlan brief
+!
+
+D2:
+CONFIG T
+ip dhcp excluded-add 10.2.1.1 10.2.1.199
+ip dhcp excluded-add 10.2.1.250 10.2.1.254
+!
+ip dhcp pool vlan10
+  network 10.2.1.0 255.255.255.0
+  default-router 10.2.1.254
+!
+!#ipasok D2 port e1/0 sa vlan 20
+config t
+int e1/0
+   switchport mode access
+   switchport access vlan 20
+   do show vlan brief
+
+
+
+
+
+
 
 
