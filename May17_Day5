@@ -1,13 +1,74 @@
 https://github.com/4rthurCyber08/Rivan_Day5.git
 
+open PENTEST VMWARE KALI
+*refer on pictures on phone
+
+
+copy on config on devices
+line 877 - 958
+
+
+
+*Access vs Trunking activity
+line 550 
+
+
+DARNA
+line 1000
+
+WONDERWOMAN
+line 1221
+
+SUPERMAN 
+line 1365
+
+PORT SECURITY
+line 1635
+
+
+load balancing
+line 1905
 
 
 
 
+FORTIGATE
+1200
+
+config system admin
+ edit admin
+  set accprofile super_admin
+  set vdom root
+  set password C1sc0123
+  next
+ edit user1
+  set accprofile super_admin
+  set vdom root
+  set password pass
+  end
+show system admin
 
 
+!@FWEDGE - LOCAL USER DIRECTORY
+
+config system admin
+ edit admin
+  set accprofile super_admin
+  set vdom root
+  set password C1sc0123
+  next
+ edit user1
+  set accprofile super_admin
+  set vdom root
+  set password pass
+  end
+show system admin
 
 
+OPEN GUI FORTINET
+
+OPEN VMWARE FIRST
+THEN 208.8.8.200
 
 
 
