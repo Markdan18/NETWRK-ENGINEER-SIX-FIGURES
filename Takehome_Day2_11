@@ -50,6 +50,15 @@ S: /32 - /6 = /26
 I: 3RD, 64i                      *SHOULD BE 4TH , 64i*
 
 
+
+/////////
+Test "Gawin 2000"
+C: 12 bits 
+S: /32 - /12 = /20
+I: 3rd, 16i
+
+
+/////////
 @D1
 conf te
 vlan 2
