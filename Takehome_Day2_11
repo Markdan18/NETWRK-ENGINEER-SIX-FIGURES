@@ -122,6 +122,21 @@ default-router 172.16.0.5
 end
 
 
+@D2
+conf te
+int e1/0
+no shutdown
+switchport access vlan 6
+do show vlan brief
+
+
+@S2
+conf te
+int e1/0
+no shutdown
+ip address dhcp
+do bp
+
 ////////////////////////////
 
 @A1
