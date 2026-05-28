@@ -105,6 +105,23 @@ C: 3 bits
 S: /32 - /3 = /29
 I: 4th, 4i
 
+@A1
+conf te
+vlan 6
+name psbank6
+exit
+
+int vlan 6
+no shutdown
+ip address 172.16.0.5 255.255.255.252
+exit
+ip dhcpc excluded-add 172.16.0.5 172.16.0.7
+ip dhcp pool psbank6
+network 172.16.0.4 255.255.255.252
+default-router 172.16.0.5 
+end
+
+
 ////////////////////////////
 
 @A1
