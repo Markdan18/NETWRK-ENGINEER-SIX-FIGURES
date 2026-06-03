@@ -44,3 +44,9 @@ aight aight aight
 ggggggg
 pracctice kita
 pls
+*****
+conf t
+vlan 69
+name plsmagpracticekana
+exit
+****
